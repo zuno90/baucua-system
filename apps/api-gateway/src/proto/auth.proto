@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package auth;
+
+service AuthService {
+  rpc CheckAuth (JWT) returns (User) {}
+}
+
+message JWT {
+  string jwt = 1;
+}
+
+message User {
+  int32 id = 1;
+  string username = 2;
+  int32 amount = 3;
+}
