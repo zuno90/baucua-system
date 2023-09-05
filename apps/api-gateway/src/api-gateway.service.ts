@@ -5,7 +5,7 @@ import { CustomError } from './utils/exception.util';
 import { AuthService } from './auth/auth.service';
 
 interface IAuthService {
-  CheckAuth(data: { jwt: string });
+  CheckAuth(data: { jwt: string }): Observable<any>;
 }
 
 @Injectable()
@@ -26,8 +26,8 @@ export class ApiGatewayService implements OnModuleInit {
     return this.authService.getUser(id);
   }
 
-  async checkAuth(jwt: string) {
-    return await this.authClient.CheckAuth({ jwt }).pipe(
+  checkAuth(jwt: string) {
+    return this.authClient.CheckAuth({ jwt }).pipe(
       tap((res) => res),
       catchError((err) => CustomError(HttpStatus.BAD_REQUEST, err.code)),
     );
