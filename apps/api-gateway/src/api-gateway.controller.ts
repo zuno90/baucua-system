@@ -34,6 +34,7 @@ export class ApiGatewayController {
     // return this.apiGatewayService.getUserById(id, user.id);
   }
 
+  // get user info
   @Get('cms/user')
   @UseGuards(AuthGuard)
   getUser(@CurrentUser() user: User) {

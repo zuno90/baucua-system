@@ -79,7 +79,7 @@ export class AuthService {
     try {
       const payload = await this.verifyUser(token);
       const user = await this.getUser(payload.id);
-      if (!user) return;
+      if (!user) throw Error('Can not parse user!');
       const { id, username, amount, role } = user;
       return {
         id,
@@ -89,7 +89,6 @@ export class AuthService {
       };
     } catch (error) {
       console.error('err', error);
-      // return error;
     }
   }
 

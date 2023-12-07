@@ -1,6 +1,6 @@
 import { HttpStatus, Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { ClientGrpc, ClientProxy } from '@nestjs/microservices';
-import { Observable, catchError, firstValueFrom, map, tap } from 'rxjs';
+import { Observable, catchError, tap } from 'rxjs';
 import { CustomError } from './utils/exception.util';
 import { AuthService } from './auth/auth.service';
 
