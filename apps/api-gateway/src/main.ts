@@ -6,6 +6,7 @@ import { WsAdapter } from '@nestjs/platform-ws';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { join } from 'path';
+import { log } from 'util';
 
 async function bootstrap() {
   const app = await NestFactory.create(ApiGatewayModule);
@@ -37,12 +38,10 @@ async function bootstrap() {
       package: 'auth',
       url: configService.get<string>('GRPC_URL'),
       protoPath: join(__dirname, '../../../../proto/auth.proto'),
-      loader: {
-        arrays: true,
-        objects: true,
-      },
+      loader: { arrays: true, objects: true },
     },
   });
+  log(join(__dirname, '../../../../proto/auth.proto'));
   await app.startAllMicroservices();
   await app.listen(PORT);
 }
