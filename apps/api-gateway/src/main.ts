@@ -41,7 +41,6 @@ async function bootstrap() {
       loader: { arrays: true, objects: true },
     },
   });
-  log(join(__dirname, '../../../../proto/auth.proto'));
   await app.startAllMicroservices();
   await app.listen(PORT);
 }
